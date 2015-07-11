@@ -1,0 +1,13 @@
+*.py[cod]
+
+.idea/
+
+# Escapists map files
+*.map
+*.proj
+
+# pyinstaller config
+*.spec
+
+# blowfish-compat script
+blowfish_compat.py
