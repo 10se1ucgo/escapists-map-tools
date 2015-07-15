@@ -5,7 +5,16 @@ import tkFileDialog
 import maptools
 
 try:
+    import _winreg as winreg
+
+    winmachine = True
+except ImportError:
+
+    winmachine = False
+
+try:
     import argparse
+
     argparse_enabled = True
 except ImportError:
     argparse_enabled = False
@@ -87,15 +96,14 @@ class maptoolsgui:
         self.cancel.pack(side="right")
 
     def dotheactionyo(self):
+
         self.encryptkey = self.entry.get()
         self.keylevel.destroy()
-        print self.action
-        print self.encryptkey
         self.filepath = tkFileDialog.askopenfilename(defaultextension=".map",
                                                      filetypes=[('Escapists map file', '*.map'),
                                                                 ('Escapists project file', '*.proj'),
                                                                 ('All files', '*.*')],
-                                                     initialdir="C:\Program Files (x86)\Steam\SteamApps\common\The Escapists\Data\Maps")
+                                                     initialdir=self.escapistspath())
         if not self.filepath:
             sys.exit()
         elif self.action == 1:
@@ -104,6 +112,19 @@ class maptoolsgui:
             maptools.decryptmap(self.filepath, self.encryptkey)
         elif self.action == 3:
             maptools.encryptmap(self.filepath, self.encryptkey)
+
+    def escapistspath(self):
+
+        if winmachine:
+            try:
+                self.steam_reg_path = r"Software\Valve\Steam"
+                self.reg_key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, self.steam_reg_path, 0, winreg.KEY_READ)
+                self.value, regtype = winreg.QueryValueEx(self.reg_key, r"SteamPath")
+                return self.value + r"/steamapps/common/The Escapists/Data/Maps"
+            except WindowsError:
+                return None
+        else:
+            return None
 
 
 def gui():
