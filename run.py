@@ -9,7 +9,6 @@ try:
 
     winmachine = True
 except ImportError:
-
     winmachine = False
 
 try:

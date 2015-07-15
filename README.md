@@ -12,6 +12,6 @@ The Escapists uses blowfish-compat as the encryption, and the default key is mot
 
 ### Dependencies ###
 
-* argparse and/or easygui
 * PyCrypto
 * [blowfish-compat.py](https://gist.github.com/adamb70/1f140573b37939e78eb5) Made by adamb70 (Rename it to blowfish_compat.py)
+* (OPTIONAL) argparse - Only if you would like to use commandline arguments.
