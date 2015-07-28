@@ -26,7 +26,8 @@ def decompilemap(file_path, encryption_key):
         print "Done."
     with open(temp_file, "w") as mapfile:
         properties.write(mapfile)
-    print "Written to %s." % temp_file
+    blowfish_compat.encrypt(temp_file, final_file, encryption_key)
+    print "Written to %s." % final_file
     os.remove(temp_file)
     print "Temp file removed"
     print "Complete"
