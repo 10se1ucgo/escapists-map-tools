@@ -1,5 +1,8 @@
 # README #
 
+I made this while I was learning how to program, so this code is about 95% garbage. I would recommend staying away from it. 
+I have a better version written in C# that I'll put up soon.
+
 ### Escapists Map Tools ###
 
 This is a tool I quickly whipped up for personal use that can
